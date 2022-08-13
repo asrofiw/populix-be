@@ -8,6 +8,7 @@ const { responseError } = require("./src/helpers/response");
 // routes
 const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/user");
+const roleRoutes = require("./src/routes/role");
 
 const app = express();
 const { APP_PORT } = process.env;
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/role", roleRoutes);
 
 app.use((error, _req, res, _next) => {
   console.error(error);
