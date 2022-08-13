@@ -11,5 +11,6 @@ conn
   .promise()
   .query("CREATE DATABASE IF NOT EXISTS populix;")
   .then(() => console.log(`Database populix created.`))
-  .catch((err) => console.log(err))
-  .then(() => conn.end());
+  .catch((err) => console.log(err));
+
+conn.end();
