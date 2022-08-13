@@ -1,12 +1,12 @@
 const db = require("../config/database");
 
 module.exports = {
-  createUser: async (data = []) => {
+  create: async (data = []) => {
     try {
       return await db
         .promise()
         .query(
-          `INSERT INTO user (email, password, fullname, created_at, updated_at) values (?,?,?,?,?)`,
+          `INSERT INTO user (email, password, name, role_id) values (?,?,?,?)`,
           data
         );
     } catch (err) {
@@ -27,6 +27,22 @@ module.exports = {
       return await db
         .promise()
         .query(`SELECT * FROM user WHERE id = ? LIMIT 1`, [id]);
+    } catch (err) {
+      throw err;
+    }
+  },
+  update: async (id, data) => {
+    try {
+      return await db
+        .promise()
+        .query(`UPDATE user SET ? WHERE id = ${id}`, data);
+    } catch (err) {
+      throw err;
+    }
+  },
+  destroy: async (id) => {
+    try {
+      return await db.promise().query(`DELETE FROM user WHERE id = ?`, [id]);
     } catch (err) {
       throw err;
     }

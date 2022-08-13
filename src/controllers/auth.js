@@ -1,5 +1,7 @@
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 const { responseError, responseOk } = require("../helpers/response");
 const { findOneByEmail } = require("../models/user");
 
@@ -35,7 +37,23 @@ module.exports = {
         return responseError(res, 400, "Wrong password", "password");
       }
 
-      return responseOk(res, "Success", { ...user, password: undefined });
+      const token = jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          role_id: user.role_id,
+        },
+        process.env.APP_KEY,
+        {
+          expiresIn: "7d",
+        }
+      );
+
+      return responseOk(res, "Success", {
+        ...user,
+        password: undefined,
+        token,
+      });
     } catch (err) {
       return next(err);
     }

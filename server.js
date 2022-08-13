@@ -3,10 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const conn = require("./src/config/database");
+const { responseError } = require("./src/helpers/response");
 
 // routes
 const authRoutes = require("./src/routes/auth");
-const { responseError } = require("./src/helpers/response");
+const userRoutes = require("./src/routes/user");
 
 const app = express();
 const { APP_PORT } = process.env;
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 app.use((error, _req, res, _next) => {
   console.error(error);
