@@ -35,7 +35,7 @@ conn
   FOREIGN KEY (role_id) REFERENCES role(id)
 );`
   )
-  .then(() => console.log("Table role created"))
+  .then(() => console.log("Table user created"))
   .catch((err) => console.log(err));
 
 conn.end();

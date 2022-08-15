@@ -1,5 +1,3 @@
-<!-- PROJECT LOGO -->
-<br />
 <p align="center">
   <h3 align="center">Populix Backend Test</h3>
 </p>
@@ -68,7 +66,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    Database populix created.
    Table role created
-   Table role created
+   Table user created
    Rows role added
    Rows user added
       user 1: super-admin@admin.com
@@ -90,6 +88,6 @@ To get a local copy up and running follow these simple steps.
 
 2. Test Mode
 
-```sh
- npm run test
-```
+   ```sh
+   npm run test
+   ```
